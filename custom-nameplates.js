@@ -4,11 +4,11 @@ import { libWrapper } from "./shim.js";
 export const modName = "Custom Nameplates";
 export const mod = "custom-nameplates";
 export const DEFAULT_STYLE = {
-    fontFamily: "Signika",
     fontSize: 24,
-    fill: "#FFFFFF",
-    dropShadowColor: "#000000",
-    stroke: "#111111",
+    fontFamily: "Signika",
+    fontColor: "#FFFFFF",
+    shadowColor: "#000000",
+    strokeColor: "#111111",
 };
 export class StyleDefinition {
     constructor(fontSize, fontFamily, fontColor, shadowColor, strokeColor, autoScale = false) {
