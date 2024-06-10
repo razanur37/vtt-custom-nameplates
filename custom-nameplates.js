@@ -53,10 +53,10 @@ export class CustomNameplates {
         return style;
     }
     loadLocalStyles() {
-        const setting = this.game.settings.get(mod, "local-styles");
+        const settingBySceneId = this.game.settings.get(mod, "local-styles");
         let localStyles = new Map();
-        for (const key of Object.keys(setting)) {
-            localStyles.set(key, StyleDefinition.fromSetting(setting[key]));
+        for (const sceneId of Object.keys(settingBySceneId)) {
+            localStyles.set(sceneId, StyleDefinition.fromSetting(settingBySceneId[sceneId]));
         }
         return localStyles;
     }
@@ -125,7 +125,7 @@ export class CustomNameplates {
         }
     }
     isAutoScaleEnabledForScene() {
-        return this.loadLocalStyles().has(this.game.scenes.viewed.id) || this.loadGlobalStyle().autoScale;
+        return this.loadLocalStyles()?.get(this.game.scenes.viewed.id).autoScale || this.loadGlobalStyle().autoScale;
     }
     checkAutoScale(canvas) {
         if (canvas.tokens.preview.children.length > 0 || canvas.templates.preview.children.length > 0) return;
