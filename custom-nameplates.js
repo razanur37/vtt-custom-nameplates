@@ -125,7 +125,7 @@ export class CustomNameplates {
         }
     }
     isAutoScaleEnabledForScene() {
-        return this.loadLocalStyles()?.get(this.game.scenes.viewed.id).autoScale || this.loadGlobalStyle().autoScale;
+        return this.loadLocalStyles()?.get(this.game.scenes.viewed.id)?.autoScale || this.loadGlobalStyle().autoScale;
     }
     checkAutoScale(canvas) {
         if (canvas.tokens.preview.children.length > 0 || canvas.templates.preview.children.length > 0) return;
@@ -178,17 +178,16 @@ class NameplateEditConfig extends FormApplication {
         options.id = "custom-nameplates-edit";
         options.template = "modules/custom-nameplates/templates/nameplate-config.html";
         options.width = 350;
-        //options.height = 280;
         return options;
     }
     get title() {
         return "Edit Nameplate Style";
     }
-    async getData(options) {
+    async getData(_options) {
         let localStyle = game.customNameplates.getLocalStyle(game.scenes.viewed.id);
         let hasLocalSettings = localStyle != null;
         if (!localStyle) {
-            localStyle = DEFAULT_STYLE;
+            localStyle = DEFAULT_STYLE_DEFINITION;
         }
         return {
             globalSettings: game.customNameplates.loadGlobalStyle(),
@@ -197,7 +196,7 @@ class NameplateEditConfig extends FormApplication {
             fontFamilies: FontConfig.getAvailableFontChoices(),
         };
     }
-    async _updateObject(event, formData) {
+    async _updateObject(_event, formData) {
         if (formData.localConfig) {
             let localStyle = {
                 fontFamily: formData.localFontFamily,
