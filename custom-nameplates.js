@@ -125,7 +125,10 @@ export class CustomNameplates {
         }
     }
     isAutoScaleEnabledForScene() {
-        return this.loadLocalStyles()?.get(this.game.scenes.viewed.id)?.autoScale || this.loadGlobalStyle().autoScale;
+        const localStyle = this.loadLocalStyles().get(this.game.scenes.viewed.id);
+        const localAutoScale = localStyle?.autoScale;
+        const globalAutoScale = this.loadGlobalStyle().autoScale;
+        return localAutoScale || (globalAutoScale && !localStyle);
     }
     checkAutoScale(canvas) {
         if (canvas.tokens.preview.children.length > 0 || canvas.templates.preview.children.length > 0) return;
