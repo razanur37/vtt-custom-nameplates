@@ -211,21 +211,21 @@ class NameplateEditConfig extends FormApplication {
             };
             await game.customNameplates.setLocalStyle(game.scenes.viewed.id, localStyle);
         } else {
-            let globalStyle = {
-                fontFamily: formData.globalFontFamily,
-                fontSize: formData.globalFontSize,
-                fontColor: formData.globalFontColor,
-                shadowColor: formData.globalShadowColor,
-                strokeColor: formData.globalStrokeColor,
-                autoScale: formData.globalAutoScaleFont,
-            };
-            await game.customNameplates.saveGlobalStyle(globalStyle);
-
             //Remove local settings (as local settings not enabled)
             if (game.customNameplates.isSceneBeingViewed()) {
                 await game.customNameplates.deleteLocalStyle(game.scenes.viewed.id);
             }
         }
+        let globalStyle = {
+            fontFamily: formData.globalFontFamily,
+            fontSize: formData.globalFontSize,
+            fontColor: formData.globalFontColor,
+            shadowColor: formData.globalShadowColor,
+            strokeColor: formData.globalStrokeColor,
+            autoScale: formData.globalAutoScaleFont,
+        };
+        await game.customNameplates.saveGlobalStyle(globalStyle);
+
         ui.notifications.notify("Updated nameplate styles. Please refresh for changes to apply");
         game.customNameplates.setCanvasStyle();
     }
