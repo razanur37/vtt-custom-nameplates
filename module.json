@@ -17,6 +17,6 @@
     },
     "esmodules": ["./custom-nameplates.js"],
     "url": "https://github.com/razanur37/vtt-custom-nameplates",
-    "manifest": "https://github.com/razanur37/vtt-custom-nameplates/releases/latest/module.json",
+    "manifest": "https://github.com/razanur37/vtt-custom-nameplates/releases/latest/download/module.json",
     "download": "https://github.com/razanur37/vtt-custom-nameplates/releases/download/2.2.0/2.2.0.zip"
 }
